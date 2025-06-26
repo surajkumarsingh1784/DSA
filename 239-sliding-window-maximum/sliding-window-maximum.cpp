@@ -20,7 +20,7 @@ public:
         for (int i = 0; i <= n - k; i++) {
             if (j < i) j = i;
             while (ngi[j] < i + k) {
-                j = ngi[j]; // jump to next greater
+                j = ngi[j]; 
             }
             ans.push_back(arr[j]);
         }
