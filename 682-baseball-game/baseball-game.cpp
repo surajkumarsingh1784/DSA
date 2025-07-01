@@ -1,33 +1,36 @@
 class Solution {
 public:
     int calPoints(vector<string>& operations) {
-        stack<int> st;
+        int n = operations.size();
+        int record[1000]; // Max size according to constraints
+        int index = 0;
 
-        for (string op : operations) {
+        for (int i = 0; i < n; ++i) {
+            string op = operations[i];
+
             if (op == "C") {
-                st.pop();  // Remove last valid score
+                index--; // Remove last score
             } 
             else if (op == "D") {
-                st.push(2 * st.top());  // Double last score
+                record[index] = 2 * record[index - 1];
+                index++;
             } 
             else if (op == "+") {
-                int top1 = st.top(); st.pop();
-                int top2 = st.top();
-                st.push(top1);  // Push back first popped element
-                st.push(top1 + top2);  // Push their sum
+                record[index] = record[index - 1] + record[index - 2];
+                index++;
             } 
             else {
-                st.push(stoi(op));  // Convert string to int and push
+                record[index] = stoi(op);
+                index++;
             }
         }
 
-        // Calculate total sum of stack
         int sum = 0;
-        while (!st.empty()) {
-            sum += st.top();
-            st.pop();
+        for (int i = 0; i < index; ++i) {
+            sum += record[i];
         }
 
         return sum;
     }
 };
+
