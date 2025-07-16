@@ -7,7 +7,7 @@ public:
             if(nums[i]==1){
                 count++;
                 maxcount=max(maxcount,count);
-            }else{
+            } else{
                 count=0;
             }
         }
