@@ -28,7 +28,6 @@ public:
                 temp=temp->next;
             }
             return slow;
-           
         }
     }
 };
