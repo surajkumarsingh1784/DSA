@@ -15,7 +15,7 @@ public:
         ListNode* a=head;
         ListNode* b=head->next;
         while(b!=NULL){
-            while(b!=NULL and b->val==a->val){
+            while(b!=NULL && a->val==b->val){
                 b=b->next;
             }
             a->next=b;
