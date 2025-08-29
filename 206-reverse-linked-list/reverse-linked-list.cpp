@@ -11,18 +11,18 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-       if(head==NULL || head->next==NULL){
-        return head;
-       }
-       ListNode* prev=NULL;
-       ListNode* curr=head;
-       ListNode* Next=NULL;
-       while(curr!=NULL){ 
-       Next=curr->next;
-       curr->next=prev;
-       prev=curr;
-       curr=Next;
-       }
-       return prev;
+        // Base case: agar list empty hai ya sirf 1 element hai
+        if (head == NULL || head->next == NULL) {
+            return head;
+        }
+
+        // recursion se baaki list reverse kar do
+        ListNode* newHead = reverseList(head->next);
+
+        // ab current node ka link reverse karo
+        head->next->next = head;
+        head->next = NULL;
+
+        return newHead;
     }
 };
