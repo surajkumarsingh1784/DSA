@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
+        if (dividend == INT_MIN && divisor == -1)
+            return INT_MAX;
+
+        long long a = llabs(dividend);
+        long long b = llabs(divisor);
+        long long ans = 0;
+
+        while (a >= b) {
+            int shift = 0;
+            while (a >= (b << shift))
+                shift++;
+
+            shift--;
+            a -= (b << shift);
+            ans += (1LL << shift);
+        }
+
+        if ((dividend < 0) ^ (divisor < 0))
+            ans = -ans;
+
+        return ans;
+    }
+};
